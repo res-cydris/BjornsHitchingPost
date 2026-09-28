@@ -1,0 +1,22 @@
+<Project Sdk="Microsoft.NET.Sdk">
+  <PropertyGroup>
+    <TargetFramework>netstandard2.1</TargetFramework>
+    <LangVersion>latest</LangVersion>
+    <AssemblyName>BjornsHitchingPost</AssemblyName>
+    <Version>1.0.1</Version>
+    <GenerateAssemblyInfo>true</GenerateAssemblyInfo>
+    <EnableDefaultCompileItems>true</EnableDefaultCompileItems>
+    <GameDir Condition="'$(GameDir)' == ''">C:\Program Files (x86)\Steam\steamapps\common\Valheim</GameDir>
+    <DependenciesDir Condition="'$(DependenciesDir)' == ''">$(MSBuildThisFileDirectory)..\..\..\work\deps</DependenciesDir>
+  </PropertyGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="..\package\icon.png" LogicalName="BjornsHitchingPost.icon.png" />
+    <Reference Include="$(GameDir)\valheim_Data\Managed\*.dll" Exclude="$(GameDir)\valheim_Data\Managed\mscorlib.dll;$(GameDir)\valheim_Data\Managed\netstandard.dll;$(GameDir)\valheim_Data\Managed\System*.dll;$(GameDir)\valheim_Data\Managed\Microsoft*.dll;$(GameDir)\valheim_Data\Managed\Mono*.dll">
+      <Private>false</Private>
+    </Reference>
+    <Reference Include="$(DependenciesDir)\BepInEx\BepInExPack_Valheim\BepInEx\core\BepInEx.dll"><Private>false</Private></Reference>
+    <Reference Include="$(DependenciesDir)\BepInEx\BepInExPack_Valheim\BepInEx\core\0Harmony.dll"><Private>false</Private></Reference>
+    <Reference Include="$(DependenciesDir)\Jotunn\plugins\Jotunn.dll"><Private>false</Private></Reference>
+  </ItemGroup>
+</Project>
+

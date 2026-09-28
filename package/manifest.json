@@ -1,0 +1,10 @@
+{
+  "name": "BjornsHitchingPost",
+  "version_number": "1.0.1",
+  "website_url": "",
+  "description": "Hitch animals to ease taming or prevent them from roaming off. Harpoon and mounted hitching, individual release, and configurable tethers. Server required; vanilla player compatible.",
+  "dependencies": [
+    "denikson-BepInExPack_Valheim-5.4.2351",
+    "ValheimModding-Jotunn-2.30.2"
+  ]
+}
