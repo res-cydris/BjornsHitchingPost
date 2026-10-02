@@ -46,7 +46,7 @@ This mod is **vanilla player compatible**. Unmodded players see the animals and 
 
 **When no compatible modded simulator is nearby, tethered animals are held stationary under server ownership.** They remain confined, but AI, combat, and active taming simulation pause. Roaming within the tether and taming resume when a modded player returns, or when the modded host is actively simulating that area. Vanilla timers based on world time may catch up on resuming; this does not add off-screen taming. Vanilla clients cannot enforce this mod's restraint rules.
 
-Marked posts also stay under compatible ownership to preserve resource refunds. Unmodded users cannot reliably remove/damage a held post or interact with a held animal when its server-side object is not loaded. Use a modded player to manage posts. This is a mixed-group mod, not a fully featured server-only experience.
+Vanilla players can remove posts with the hammer and damage them even when no modded player is nearby. The modded server handles the native requests and preserves the fine wood and bronze nail refunds. Normal vanilla hammer range, workbench, and ward checks still apply. Animals release after the existing missing-post grace period (up to 15 seconds). Unmodded players still cannot use hitch/release controls or see ropes, and parked animals remain paused.
 
 ## Persistence and permissions
 
@@ -104,7 +104,7 @@ Licensed under the [MIT License](LICENSE). Copyright (c) 2026 res-cydris. Game a
 
 Install the mod on the **dedicated server or world host**. Players who build posts, hitch or release animals, or want to see ropes must also install it. Other players can use vanilla Valheim.
 
-The server and modded players must use **Bjørn's Hitching Post 1.0.1**, with **BepInExPack Valheim 5.4.2351** and **Jötunn 2.30.2**. Back up your world before upgrading. Replace older copies; do not install the old underscored package alongside this one.
+The server and modded players must use **Bjørn's Hitching Post 1.0.2**, with **BepInExPack Valheim 5.4.2351** and **Jötunn 2.30.2**. Back up your world before upgrading. Replace older copies; do not install the old underscored package alongside this one.
 
 ### Thunderstore / r2modman — recommended
 
@@ -115,13 +115,13 @@ The server and modded players must use **Bjørn's Hitching Post 1.0.1**, with **
 ### GitHub Releases
 
 - Open this mod's GitHub repository and go to **Releases**.
-- Download the packaged **Bjørn's Hitching Post-1.0.1.zip** or **BjornsHitchingPost-1.0.1.zip** release asset, then follow the manual installation steps below.
+- Download the packaged **Bjørn's Hitching Post-1.0.2.zip** or **BjornsHitchingPost-1.0.2.zip** release asset, then follow the manual installation steps below.
 - Choose the compiled mod package, not the `-source.zip` archive or GitHub's automatically generated source-code downloads.
 - Install BepInExPack Valheim and Jötunn separately; the release ZIP does not bundle those dependencies.
 
 ### Nexus Mods
 
-- Open this mod's Nexus Mods page and download the **1.0.1 main file** using the manual download option.
+- Open this mod's Nexus Mods page and download the **1.0.2 main file** using the manual download option.
 - Extract the downloaded package and follow the manual installation steps below.
 - Install BepInExPack Valheim and Jötunn separately. Downloading this mod from Nexus does not install its dependencies automatically.
 - Use only one installed copy of the plugin, even if you download it from multiple sites.
@@ -139,6 +139,6 @@ The server and modded players must use **Bjørn's Hitching Post 1.0.1**, with **
    ```
 
 6. When upgrading, replace the old DLL and remove duplicate copies from other plugin folders. The README, manifest, and icon do not need to be copied into the game folder.
-7. Start the game or server using its BepInEx-enabled launch setup. Check `BepInEx/LogOutput.log` for **Bjørn's Hitching Post 1.0.1** and any loading errors.
+7. Start the game or server using its BepInEx-enabled launch setup. Check `BepInEx/LogOutput.log` for **Bjørn's Hitching Post 1.0.2** and any loading errors.
 
 Repeat these steps for the server/world host and each player who needs the mod's controls or rope visuals. Keep their mod versions matched.

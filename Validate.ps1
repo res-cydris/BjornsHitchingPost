@@ -23,7 +23,10 @@ $contracts=@{
  'ZDO'=@('Deserialize','SetOwner');
  'ZDOMan'=@('Load','LoadChunks','RPC_ZDOData');
  'Player'=@('TryPlacePiece','TakeInput','Update');
- 'Piece'=@('DropResources')
+ 'Piece'=@('DropResources');
+ 'ZRoutedRpc'=@('HandleRoutedRPC');
+ 'ZNetScene'=@('CreateObject');
+ 'WearNTear'=@('RPC_Remove','RPC_Damage')
 }
 $checks=0
 foreach($entry in $contracts.GetEnumerator()) {
@@ -33,7 +36,7 @@ foreach($entry in $contracts.GetEnumerator()) {
    $checks++
  }
 }
-foreach($pair in @(@('SE_Harpooned','m_attacker'),@('Projectile','m_owner'),@('Projectile','m_statusEffectHash'),@('PrivateArea','m_allAreas'),@('ZDOMan','m_objectsByID'))) {
+foreach($pair in @(@('ZNetScene','m_instances'),@('SE_Harpooned','m_attacker'),@('Projectile','m_owner'),@('Projectile','m_statusEffectHash'),@('PrivateArea','m_allAreas'),@('ZDOMan','m_objectsByID'))) {
  $type=$game.MainModule.Types | Where-Object Name -EQ $pair[0]
  if (-not ($type.Fields | Where-Object Name -EQ $pair[1])) { throw "Missing field $pair" }; $checks++
 }
@@ -51,7 +54,7 @@ function Check-Patches($types) {
      $targetType=$attribute.ConstructorArguments[0].Value.Resolve()
      $target=@($targetType.Methods | Where-Object Name -EQ $attribute.ConstructorArguments[1].Value)
      if($target.Count -ne 1) {throw "Ambiguous Harmony target $($type.FullName)"}
-     foreach($patch in $type.Methods | Where-Object {$_.Name -in @('Prefix','Postfix')}) {
+     foreach($patch in $type.Methods | Where-Object {$_.Name -in @('Prefix','Postfix','Finalizer')}) {
        foreach($parameter in $patch.Parameters) {
          $name=$parameter.Name
          if($name.StartsWith('___')) {
@@ -74,7 +77,7 @@ if($compat.ConstructorArguments[0].Value -ne $serverOnly) {throw 'Client install
 "PASS: Harmony parameter bindings; compatibility requires server only."
 Add-Type -AssemblyName System.IO.Compression.FileSystem
 Add-Type -AssemblyName System.Drawing
-$zip=[System.IO.Compression.ZipFile]::OpenRead("$PSScriptRoot\..\BjornsHitchingPost-1.0.1.zip")
+$zip=[System.IO.Compression.ZipFile]::OpenRead("$PSScriptRoot\..\BjornsHitchingPost-1.0.2.zip")
 try {
  $names=@($zip.Entries | ForEach-Object {$_.FullName.Replace('\','/')})
  foreach($name in @('LICENSE','manifest.json','README.md','icon.png','plugins/BjornsHitchingPost/BjornsHitchingPost.dll')) {
@@ -83,7 +86,7 @@ try {
  if(@($names | Where-Object {$_ -like '*.dll'}).Count -ne 1) { throw 'Unexpected redistributed DLLs' }
  $reader=[System.IO.StreamReader]::new($zip.GetEntry('manifest.json').Open())
  try {$manifest=$reader.ReadToEnd() | ConvertFrom-Json} finally {$reader.Dispose()}
- if($manifest.version_number -ne '1.0.1' -or $plugin.Name.Version.ToString() -ne '1.0.1.0') {throw 'Package/assembly version mismatch'}
+ if($manifest.version_number -ne '1.0.2' -or $plugin.Name.Version.ToString() -ne '1.0.2.0') {throw 'Package/assembly version mismatch'}
  $packed=$zip.Entries | Where-Object {$_.FullName.Replace('\','/') -eq 'plugins/BjornsHitchingPost/BjornsHitchingPost.dll'}
  $stream=$packed.Open(); $hash=[System.Security.Cryptography.SHA256]::Create()
  try { $packedHash=[BitConverter]::ToString($hash.ComputeHash($stream)).Replace('-','') } finally {$hash.Dispose();$stream.Dispose()}
@@ -93,5 +96,5 @@ try {
  try { if($icon.Width -ne 256 -or $icon.Height -ne 256) {throw 'Invalid icon dimensions'} } finally {$icon.Dispose()}
  "PASS: ZIP structure, manifest, 256x256 PNG, and plugin-only binary contents."
  "Plugin assembly: $($plugin.Name.FullName)"
- "ZIP SHA256: $((Get-FileHash "$PSScriptRoot\..\BjornsHitchingPost-1.0.1.zip").Hash)"
+ "ZIP SHA256: $((Get-FileHash "$PSScriptRoot\..\BjornsHitchingPost-1.0.2.zip").Hash)"
 } finally {$zip.Dispose(); $game.Dispose(); $plugin.Dispose()}

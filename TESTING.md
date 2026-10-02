@@ -1,10 +1,10 @@
-# 1.0.1 mixed-client acceptance checklist
+# 1.0.2 mixed-client acceptance checklist
 
 **Gameplay is untested.** Offline checks do not prove multiplayer compatibility, Unity visuals, or persistence. Use a backed-up test world.
 
 ## Setup
 
-- Server/host: Valheim 1.0.16, BepInExPack Valheim 5.4.2351, Jötunn 2.30.2, hitching-post mod 1.0.1.
+- Server/host: Valheim 1.0.26, BepInExPack Valheim 5.4.2351, Jötunn 2.30.2, hitching-post mod 1.0.2.
 - Client A: same game/mod/dependencies.
 - Client B: stock Valheim without this mod, Jötunn, or a mod loader.
 - Client C for handoffs: same as A.
@@ -39,11 +39,11 @@
 
 ## Upgrade
 
-Use a COPY of a 0.1.0 test world with posts and attachments. Upgrade server/A to 1.0.1 before B joins. Existing posts must convert, retain links, and save/reload. Do not downgrade a converted save; restore backup to return to 0.1.0.
+Use a COPY of a 0.1.0 test world with posts and attachments. Upgrade server/A to 1.0.2 before B joins. Existing posts must convert, retain links, and save/reload. Do not downgrade a converted save; restore backup to return to 0.1.0.
 
 Record server/client versions, nearby players, species, exact steps, and relevant BepInEx log errors. Test without unrelated mods first. See VALIDATION.txt for offline results.
 
-## 1.0.1 visual regression checks
+## 1.0.2 visual regression checks
 
 - Inspect newly placed and existing posts after reload: the crossmember overlaps the pole with no gap.
 - Compare the post tether with an active Abyssal Harpoon rope at near and far distances.
@@ -51,7 +51,7 @@ Record server/client versions, nearby players, species, exact steps, and relevan
 - Check multiple animals, growth, reconnects, and rotated posts.
 - Confirm vanilla players can still join; post ropes remain visible only to modded clients.
 
-## 1.0.1 interactions
+## 1.0.2 interactions
 
 - Hitch two animals; Shift+Use one animal's body or saddle. Only that animal should be released; normal Use should retain vanilla interactions.
 - Repeat with a wild animal and a growing juvenile. Test at the edge of the tether, away from the post.
@@ -60,7 +60,7 @@ Record server/client versions, nearby players, species, exact steps, and relevan
 - Confirm an unmounted animal without a harpoon cannot attach, and a different player's mount cannot be attached.
 - Repeat on dedicated server, host, reconnect, and controller alternate-interaction bindings.
 
-## 1.0.1 configuration
+## 1.0.2 configuration
 
 - First launch generates bjorns.hitchingpost.cfg with 5m, untamed allowed, and E / E + LeftShift shortcuts.
 - Set server length to 2.5m and client local length to 20m; confirm all modded clients enforce/display 2.5m after joining.
@@ -69,3 +69,13 @@ Record server/client versions, nearby players, species, exact steps, and relevan
 - Try shortcuts overlapping Use to ensure only one action occurs; ensure chat, inventory, menus, and death prevent custom actions.
 - Reconnect to a different server with different settings, and test single-player settings.
 - Shorten distance with existing active and parked animals; verify both stay within the new limit.
+
+## 1.0.2 vanilla removal regression
+
+- Dedicated modded server, vanilla player alone at a post, all modded players offline or far away: remove with hammer and verify exactly 10 FineWood + 10 BronzeNails refunded.
+- Repeat with a nearby modded simulator, and after server restart.
+- Without workbench or ward access, verify native hammer refusal remains.
+- Damage the post from a vanilla client; verify health persists across hits and destruction refunds once.
+- With several tethered animals, verify removal clears links within 15 seconds and vanilla ownership resumes.
+- Repeat rapid removal requests: no duplicate refunds. Verify ordinary wood poles remain unaffected.
+- Check server logs for exceptions and verify surviving temporary posts do not decay/collapse from unloaded surroundings.

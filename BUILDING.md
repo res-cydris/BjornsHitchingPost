@@ -1,6 +1,6 @@
 # Building Bjørn's Hitching Post
 
-Requires .NET SDK 8, Valheim 1.0.16 installed locally, and extracted official dependencies. Game files are read only; no build step installs the mod.
+Requires .NET SDK 8, Valheim 1.0.26 installed locally, and extracted official dependencies. Game files are read only; no build step installs the mod.
 
 Download and extract:
 
@@ -20,6 +20,6 @@ All source is original to this package. Dependency and game DLLs are deliberatel
 
 The build currently reports two MSB3277 warnings for game dependency references to System.IO.Compression and System.Net.Http. There are no compiler errors. This plugin does not use either API, and its external member references resolve against the installed assemblies. The warnings are recorded rather than suppressed.
 
-The package name uses ASCII for Thunderstore compatibility; the display name is Bjørn's Hitching Post. Publishing team/author is selected on Thunderstore at upload time and is not invented in the manifest. This is the 1.0.1 release, following user-confirmed in-game testing of the release candidate. The server must install it. Modded clients must match 1.0.1; vanilla clients may join. Animals pause without a nearby compatible simulator.
+The package name uses ASCII for Thunderstore compatibility; the display name is Bjørn's Hitching Post. Publishing team/author is selected on Thunderstore at upload time and is not invented in the manifest. This is the 1.0.2 release, following user-confirmed in-game testing of the release candidate. The server must install it. Modded clients must match 1.0.2; vanilla clients may join. Animals pause without a nearby compatible simulator.
 
 

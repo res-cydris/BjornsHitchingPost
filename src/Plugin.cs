@@ -11,7 +11,7 @@ using UnityEngine;
 
 namespace BjornsHitchingPost;
 
-[BepInPlugin(Guid, "Bjørn's Hitching Post", "1.0.1")]
+[BepInPlugin(Guid, "Bjørn's Hitching Post", "1.0.2")]
 [BepInDependency(Jotunn.Main.ModGuid)]
 [NetworkCompatibility(CompatibilityLevel.ServerMustHaveMod, VersionStrictness.Patch)]
 public sealed class Plugin : BaseUnityPlugin
@@ -34,7 +34,7 @@ public sealed class Plugin : BaseUnityPlugin
         harmony = new Harmony(Guid);
         harmony.PatchAll();
         PrefabManager.OnVanillaPrefabsAvailable += RegisterPiece;
-        Logger.LogInfo("Bjørn's Hitching Post 1.0.1 — optional clients, server required; Valheim " + Version.GetVersionString());
+        Logger.LogInfo("Bjørn's Hitching Post 1.0.2 — optional clients, server required; Valheim " + Version.GetVersionString());
     }
 
     private void Update() => OptionalClients.Tick();

@@ -14,7 +14,7 @@ internal static class OptionalClients
 {
     internal const string DriverKey = "bhp_driver";
     internal const string LeaseKey = "bhp_lease_until";
-    private const string Protocol = "1.0.1";
+    private const string Protocol = "1.0.2";
     private static readonly Dictionary<long, float> Clients = new Dictionary<long, float>();
     private static readonly HashSet<ZDOID> Tracked = new HashSet<ZDOID>();
     private static readonly FieldInfo Objects = AccessTools.Field(typeof(ZDOMan), "m_objectsByID");

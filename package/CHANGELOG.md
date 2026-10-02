@@ -1,3 +1,9 @@
+# 1.0.2
+
+- Handle vanilla hammer-removal and damage requests for server-owned posts outside the server scene.
+- Load only the requested post for the native RPC, configure resource refunds, then unload any surviving temporary object.
+- Keep client installation optional and preserve native client removal checks.
+
 # 1.0.1
 
 - Include the MIT license: Copyright (c) 2026 res-cydris.

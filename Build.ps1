@@ -22,6 +22,6 @@ dotnet run --project "$PSScriptRoot\tests\Tests.csproj" -c Release --no-restore
 if ($LASTEXITCODE) { throw 'Tests failed' }
 New-Item -ItemType Directory -Force "$PSScriptRoot\package\plugins\BjornsHitchingPost" | Out-Null
 Copy-Item "$PSScriptRoot\src\bin\Release\netstandard2.1\BjornsHitchingPost.dll" "$PSScriptRoot\package\plugins\BjornsHitchingPost\BjornsHitchingPost.dll"
-Compress-Archive -Path "$PSScriptRoot\package\*" -DestinationPath "$PSScriptRoot\..\BjornsHitchingPost-1.0.1.zip" -Force
-Copy-Item "$PSScriptRoot\..\BjornsHitchingPost-1.0.1.zip" "$PSScriptRoot\..\Bjørn's Hitching Post-1.0.1.zip" -Force
+Compress-Archive -Path "$PSScriptRoot\package\*" -DestinationPath "$PSScriptRoot\..\BjornsHitchingPost-1.0.2.zip" -Force
+Copy-Item "$PSScriptRoot\..\BjornsHitchingPost-1.0.2.zip" "$PSScriptRoot\..\Bjørn's Hitching Post-1.0.2.zip" -Force
 

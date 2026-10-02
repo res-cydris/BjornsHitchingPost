@@ -1,6 +1,6 @@
 {
   "name": "BjornsHitchingPost",
-  "version_number": "1.0.1",
+  "version_number": "1.0.2",
   "website_url": "",
   "description": "Hitch animals to ease taming or prevent them from roaming off. Harpoon and mounted hitching, individual release, and configurable tethers. Server required; vanilla player compatible.",
   "dependencies": [
